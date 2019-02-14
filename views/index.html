@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>my cloud</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/indexStyle.css">
+</head>
+<body onload="onButton1Clicked()">
+	<div id="result" >It's work!</div>
+	<input type="button" onclick="onButton1Clicked()" value="새로고침">
+
+	<!-- post 리퀘스트를 보내서 파일을 업로드 한다. -->
+	<form action="fileupload" method="post" enctype="multipart/form-data">
+		<input type="file" name="filetoupload">
+		<input type="submit" value="업로드">
+	</form>
+
+	<script type="text/javascript">
+		function onButton1Clicked(){
+			$.get("http://localhost:8888/first", function(data, status){ // get 리퀘스트 보내는 방법
+				var res = '';
+				data.forEach( function(element, index) {
+					res += "<li class = 'filename' onclick='downloadFile(this)'>" + element + "</li>";
+				});
+				$('#result').html(res);
+			});
+		}
+
+		function downloadFile(pick){
+			var index = $('.filename').index(pick);
+			var filename = $('.filename').eq(index).text();
+			console.log(filename);
+			window.location = "http://localhost:8888/download?filename="+filename;
+
+			// $.get("http://localhost:8888/download?filename="+filename, function(data, status){});
+			// 이걸 사용하지 않는 이유는 window.location 이 get 리퀘스트 역할을 이미 하고 있기 때문이다.
+		}
+	</script>
+</body>
+</html>
