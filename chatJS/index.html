@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chat</title>
+	<style>
+	.chat_log{ width: 95%; height: 200px; }
+	.name{ width: 10%; }
+	.message{ width: 70%; }
+	.chat{ width: 10%; }
+</style>
+</head>
+<body>
+	<div>
+		<textarea id="chatLog" class="chat_log" readonly></textarea>
+	</div>
+	<form id="chat">
+		<input id="name" class="name" type="text" readonly>
+		<input id="message" class="message" type="text">
+		<input type="submit" class="chat" value="chat"/>
+	</form>
+	<div id="box" class="box">
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.js"></script>
+		<script>
+			//var socket = io(); // () 이렇게 두면 기본적으로 연결한 ip와 경로로 요청을 보낸다.
+			var socket = io('http://211.237.40.125:8082');
+
+			// 보내기 버튼을 눌렀을 때
+			$('#chat').on('submit', function(e){
+				socket.emit('send message', $('#name').val(), $('#message').val());
+				$('#message').val('');
+				$('#message').focus();
+				e.preventDefault();
+			});
+
+			// 서버로 부터 receive message 이벤트를 받았을 때
+			socket.on('receive message', function(msg){
+				$('#chatLog').append(msg+'\n');
+				$('#chatLog').scrollTop($('#chatLog')[0].scrollHeight);
+			});
+
+			// 서버로 부터 change name 이벤트를 받았을 때
+			socket.on('change name', function(name){
+				$('#name').val(name);
+			});
+		</script>
+</body>
+</html>

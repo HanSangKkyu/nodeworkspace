@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>nodejs chatting site</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+</head>
+<body>
+	<div>
+		<table>
+			<thead>
+				<td>이름</td>
+				<td>내용</td>
+			</thead>
+			<tbody id="contents">
+				
+			</tbody>
+		</table>
+		<div>
+			<input id="namebox" type="text" value="">
+			<input id="msgbox" type="text" value=""><input type="button" value="보내기" onclick="sendMSG()">
+		</div>
+	    <script type="text/javascript">
+	        //var socket = io.connect('http://211.237.40.125:8082');
+            $('#contents').append('<tr><td>000</td><td>111</td></tr>');	
+
+	        var socket = io();
+
+	        $("#msgbox").keyup(function(event) {
+	            if (event.which == 13) {
+	            	sendMSG()
+	            }
+	        });
+	        $("#namebox").keyup(function(event) {
+	            if (event.which == 13) {
+	            	sendMSG()
+	            }
+	        });
+
+
+	        socket.on('toclient',function(data){
+	            console.log(data.name+' : '+data.msg);
+
+	            $('#contents').append('<tr><td>'+data.name+'</td><td>'+data.msg+'</td></tr>');
+	        });
+
+	        function sendMSG(){
+            	var data = {
+            		name : $('#namebox').val(),
+            		msg : $('#msgbox').val()
+            	}
+                socket.emit('fromclient', data);
+                $('#msgbox').val('');
+	        }
+    	</script>
+	</div>
+</body>
+</html>
