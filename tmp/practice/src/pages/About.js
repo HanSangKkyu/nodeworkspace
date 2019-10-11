@@ -8,7 +8,8 @@ class About extends Component{
 		this.state = {
 			data : 1,
 			data1 : 2,
-			query : queryString.parse(this.props.location.search)
+			query : queryString.parse(this.props.location.search),
+			listItem : ''
 		}
 
 		// console.log(this.state.data)
@@ -25,14 +26,15 @@ class About extends Component{
 		axios.get('https://api.github.com/users/hansangkkyu').then( response => {
 			// console.log(response)
 			const res = response
-			const listItem = res.data.map((item) =>
-			    <li>{item}</li>
-			);
 
+			// let tmp = res.data
+			console.log(res.data)
+			// (res.data).forEach(function(element) {
+			// 	tmp += '<li>element</li>'
+			// })
 
 			this.setState({
-				data : response.data.bio,
-				listItem : listItem
+				data : response.data.bio
 			})
 			this.state.data = response.data.bio
 		})
