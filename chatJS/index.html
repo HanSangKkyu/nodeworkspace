@@ -24,7 +24,7 @@
 		<script src="//code.jquery.com/jquery-1.11.1.js"></script>
 		<script>
 			//var socket = io(); // () 이렇게 두면 기본적으로 연결한 ip와 경로로 요청을 보낸다.
-			var socket = io('http://211.237.40.125:8082');
+			var socket = io('http://localhost:8082');
 
 			// 보내기 버튼을 눌렀을 때
 			$('#chat').on('submit', function(e){
@@ -43,6 +43,16 @@
 			// 서버로 부터 change name 이벤트를 받았을 때
 			socket.on('change name', function(name){
 				$('#name').val(name);
+			});
+		</script>
+
+		<script>
+			var socket = io('http://localhost:8888');
+			socket.emit('send message', 'wye', 'wye123');
+
+			// 서버로 부터 change name 이벤트를 받았을 때
+			socket.on('message', function(msg){
+				console.log(msg);
 			});
 		</script>
 </body>
