@@ -14,6 +14,7 @@
     <div style="height:5%; display: flex; justify-content: center; align-items: center; ">
         <label><input type="checkbox" onclick="onClickeddata1()">data1</label> 
         <label><input type="checkbox" onclick="onClickeddata2()">data2</label> 
+        <label><input type="checkbox" onclick="onClickeddata3()">data3</label> 
     </div>
     <div id="screen" style="display: flex; height:50%; justify-content: center; align-items: center; padding: 20;">
         <div id="text" style=""></div>
@@ -471,6 +472,12 @@
             
         ]
 
+        var data3 = [
+            ["ifconfig를 이용해서 ip를 변경하면 재시작시 모든 정보가 날아간다. 어떤 파일을 수정해야 재시작 후에도 변경된 ip가 유지 될까?\n","/etc/sysconfig/network-scripts/ifcfg-eth0\n"],
+            ["사용자의 만기일을 설정하는 명령어는?\n","usermod -e {만기일} {사용자명}\n"],
+            ["메일 서버가 사용하는 호스트를 등록하는 파일\n vi (괄호) \n ihd.or.kr \n kait.or.kr","/etc/mail/local-host-names"],
+        ]        
+
         var data = [];
         var index = -1;
 
@@ -541,6 +548,12 @@
 
         function onClickeddata2(){
             data = shuffle(data2);
+            console.log(data)
+            index = -1;
+        }
+
+        function onClickeddata3(){
+            data = shuffle(data3);
             console.log(data)
             index = -1;
         }
