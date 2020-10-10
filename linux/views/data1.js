@@ -107,3 +107,7 @@ var data1 = [
     ["NIS 호스트 관련 정보가 저장된 파일","hosts.byname"],
                
 ]
+
+var data2 = [
+    
+]
