@@ -476,6 +476,7 @@
             ["ifconfig를 이용해서 ip를 변경하면 재시작시 모든 정보가 날아간다. 어떤 파일을 수정해야 재시작 후에도 변경된 ip가 유지 될까?\n","/etc/sysconfig/network-scripts/ifcfg-eth0\n"],
             ["사용자의 만기일을 설정하는 명령어는?\n","usermod -e {만기일} {사용자명}\n"],
             ["메일 서버가 사용하는 호스트를 등록하는 파일\n vi (괄호) \n ihd.or.kr \n kait.or.kr","/etc/mail/local-host-names"],
+            ["서버의 커널 변수를 제어하여 TCP 연결 상태를 3시간동안 유지하도록 변경하려고 한다. 명령어는?\n", "echo 10800 > /proc/sys/net/ip4/tcp_keepalive_time\n"],
         ]        
 
         var data = [];
