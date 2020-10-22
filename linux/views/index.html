@@ -12,7 +12,7 @@
 
 <body>
     <div style="height:5%; display: flex; justify-content: center; align-items: center; ">
-	<label><input type="checkbox" onclick="onClickeddata0()">data0</label>
+	    <label><input type="checkbox" onclick="onClickeddata0()">data0</label>
         <label><input type="checkbox" onclick="onClickeddata1()">data1</label> 
         <label><input type="checkbox" onclick="onClickeddata2()">data2</label> 
         <label><input type="checkbox" onclick="onClickeddata3()">data3</label> 
@@ -541,11 +541,12 @@
                 back()
             }
         }
-	function onClickeddata0(){
-	    data = shuffle(data0);
-	    console.log(data);
-	    index = -1;
-	}
+
+        function onClickeddata0(){
+            data = shuffle(data0);
+            console.log(data);
+            index = -1;
+        }
         function onClickeddata1(){
             data = shuffle(data1);
             console.log(data)
