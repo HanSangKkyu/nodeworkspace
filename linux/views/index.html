@@ -549,20 +549,13 @@
 
             var text = document.getElementById("text").innerText;
             text = res;
-            // input text 태그를 생성해줍니다.
             var createInput = document.createElement("TEXTAREA");
             var t = document.createTextNode(text);
             createInput.appendChild(t);
             document.body.appendChild(createInput);
-            // createInput.setAttribute("type", "text");
-            // 가상으로 가져올 태그에 만들어준 input 태그를 붙여줍니다.
-            // document.getElementById("text").appendChild(createInput);
-            // 만든 input 태그의 value 값에 복사할 텍스트 값을 넣어줍니다.
             createInput.value = text;
-            // 복사 기능을 수행한 후
             createInput.select();
             document.execCommand('copy');
-            // 가상으로 붙여주었던 input 태그를 제거해줍니다.
             document.body.removeChild(createInput);
         }
         function convert(_str) {
