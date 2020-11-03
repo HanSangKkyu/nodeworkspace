@@ -550,8 +550,9 @@
                 res += '["' + convert(areaData[i]) + '","' + convert(areaData[i + 1]) + '"],\n';
             }
 
+            document.getElementById("text").innerText = res;
             var text = document.getElementById("text").innerText;
-            text = res;
+            // text = res;
             var createInput = document.createElement("TEXTAREA");
             var t = document.createTextNode(text);
             createInput.appendChild(t);
