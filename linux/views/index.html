@@ -497,6 +497,8 @@
             ["\n시스템 로그인 실패한 정보를 출력하는 명령인데 특정 파일에 기록된 로그를 확인하고 싶을 때 명령어는?","\nlastb -f /var/log/btmp-20200331"],
             ["ssh 서버의 환경설정 파일 위치는?","\n/etc/ssh/sshd_config"],
             ["\nssh 서버의 환경설정에서 root 계정의 접근을 차단하려고 할때 건드려야 하는 설정은?","\nPermitRootLogin no"],
+            ["/home디렉터리를 백업하는 과정에서\n생성되는 아카이브 포맷 형식을 new SVR4 portable format with no CRC로 지정하고, 과정을 상세히 출력한다.","\nfind /home | cpio -ocv > home.backup\n-o: 아카이브 설정\n-c: SRV4\n-v: 작업과정 출력"],
+["\n/home디렉터리를 복원하는 과정에서\n필요한 경우 디렉터리를 생성하는 명령어는?","\ncpio -id < home.backup\n-i: 추출\n-d: 필요한 경우 디렉터리 생성\n"],
 
 
         ]
