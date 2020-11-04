@@ -575,7 +575,7 @@
             ["\npid가 513인 프로세스의 NI값 최대로 낮춰서 우선순위를 높인다\n","\nrenice -n -20 513 또는 renice -20 513\n"],
             ["ihduser 사용자가 설정한 cron 작업 내용을 확인한다.\n","\ncrontab -lu ihduser (뒤에 username을 써주려면 -u 옵션이 들어가야 한다)\n"],
             ["\nihduser 사용자가 설정한 cron 작업 내용을 수정한다.\n","\ncrontab -eu ihduser (뒤에 username을 써주려면 -u 옵션이 들어가야 한다)\n"],
-            ["\nihduser 사용자가 설ㅈ어한 cron 작업 파일을 삭제한다.\n","\ncrontab -ru ihduser (뒤에 username을 써주려면 -u 옵션이 들어가야 한다)"],
+            ["\nihduser 사용자가 설정한 cron 작업 파일을 삭제한다.\n","\ncrontab -ru ihduser (뒤에 username을 써주려면 -u 옵션이 들어가야 한다)"],
             ["rpm 패키지로 설치도니 mysql를 제거하는데, 의존성은 무시한다.\n","\nrpm -e --nodeps mysql\n"],
             ["\nmysql 패키지를 제거했더니, postfix가 정상적으로 동작하지 않는다. postfix의 실행 명령어의 위치 정보를 출력하는 명령을 적는다.\n","\nwhich postfix\n"],
             ["\npostfix가 참고하는 동적 라이브러리 정보를 확인하는 명령을 기재한다.\n","\nldd /usr/sbin/postfix(which postfix로 얻어낸다)\n"],
@@ -589,6 +589,14 @@
             ["\n로컬시스템의 3번째 터미널 창(/dev/tty3)에 로그인이 성공한 정보를 출력한다.\n","\nlast tty3\n"],
             ["\nkaituser가 로그인에 실패한 정보를 출력한다.\n","\nlastb kaituser\n"],
             ["\nihduser의 최종 로그인한 정보를 출력한다.\n","\nlastlog -u ihduser (lastlog 유저별 마지막 로그인 로그)"],
+            ["아피치 설정 과정에서 허가 거부된 페이지에 접근할 경우에 제공되는 페이지를 설정하는 항목과 값은?\n","\nErrorDocument 403 /forbidden.html\n"],
+            ["\n아파치 설정 과정에서 인증되지 않은 경우에 제공되는 페이지를 설정한다는 항목과 값은?\n","\nErrorDocument 402 /unauth.html\n"],
+            ["\n아파치 설정 과정에서 존재하지 않는 웹 문서에 접근할 때 제공되는 페이지를 설정한다.\n","\nErrorDocument 404 /not_found.html"],
+            ["지정된 NIS 서버이름을 출력한다.\n","\nypwhich\n"],
+["\nNIS 서버의 맵 파일을 출력한다.\n","\nypwhich -m\n"],
+["\nNIS 서버의 사용자 관련 정보를 출력한다.\n","\nypcat passwd.byname\n"],
+["\nNIS 서버에 등록된 lin 사용자의 패스워드를 변경한다.\n","\nyppasswd lin"],
+
 
 
         ]
