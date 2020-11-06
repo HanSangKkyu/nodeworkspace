@@ -614,8 +614,26 @@
             ["사용자의 디스크 쿼터를 설정하는과정이다. \n사용자에게 설정된 유예 기간(grace period)을 변경한다.\n","\nedquota -t\n"],
             ["\nihduser에 설정된 쿼터 용량을 kaituser에 동일하게 적용시킨다.\n","\nedquota -p ihduser kaituser \n"],
             ["\nkaituser에 적용된 디스크 쿼터 정보를 확인한다.\n","\nquota kaituser"],
-            ["bash 프로세스에 설정된 NI값을 -10만큼 감소시켜 우선순위를 높인다.\n","\nnice --10 bash 또는 nice -n -10 bash\n"],
-            ["\nPID가 1222인 프로세스의 NI값을 10으로 지정한다.\n","\nrenice -n 10 1222 또는 renice 10 1222"],
+            ["시스템에 기본적으로 설치된 cat 명령어의 패키지 프로그램명을 찾아서 해당 패키지가 설치한 파일 목록을 확인하는 과정이다. \ncat 명령어의 절대 경로 정보를 출력한다.\ncat 명령어를 설치한 패키지명을 찾는다.\ncat 명령어를 설치한 패키지의 크기, 사이즈, 요약, 설명 등의 기본정보를 출력한다.\ncat 명령어가 포함된 패키지가 설치한 파일 목록을 확인한다.\n","\n시스템에 기본적으로 설치된 cat 명령어의 패키지 프로그램명을 찾아서 해당 패키지가 설치한 파일 목록을 확인하는 과정이다. \ncat 명령어의 절대 경로 정보를 출력한다.\nwhich cat\ncat 명령어를 설치한 패키지명을 찾는다.\nrpm -qf /bin/cat (/bin/cat은 which cat의 결과)\ncat 명령어를 설치한 패키지의 크기, 사이즈, 요약, 설명 등의 기본정보를 출력한다.\nrpm -qi coreutils (coreutils는 rpm -qf /bin/cat의 결과)\ncat 명령어가 포함된 패키지가 설치한 파일 목록을 확인한다.\nrpm -ql coreutils (coreutils는 rpm -qf /bin/cat의 결과)"],
+            ["커널 모듈 간의 의존성 정보를 확인한다.\n","\ncat lib/modules/{version}/modules.dep\n"],
+            ["\n모듈 간의 의존성 변경으로 인해 파일 정보가 갱신 되어 관련 명령어를 실행한다. \n","\ndepmod (modules.dep, map 파일을 만드는 명령어"],
+            ["프린터 관련 명령어를 사용해서 /etc/passwd의 내용을 2장 출력하려고 한다. 두가지 말해봐라\n","\nlpr -"],
+            ["시스템 로그 관련 설정을 하는 과정이다.\n관련 파일명을 절대 경로로 기재한다.\n","\nvi etc/rsyslog.conf\n"],
+            ["\n시스템 로그 관련 설정을 하는 과정이다.\nssh와 같은 인증을 필요로 하는 프로그램 유형이 발생한 메시지는 /var/log/sshlog에 기록하고 info 수준이의 로그는 제외한다.\n","\nauthpriv.*;authpriv.!=info /var/log/sshlog\n"],
+            ["\n시스템 로그 관련 설정을 하는 과정이다.\n모든 facility가 발생하는 crit 수준의 메시지만 /vat/log/critical 파일에 기록한다.\n","\n*.=crit /var/log/critical"],
+            ["최근 3일 동안 로그인한 사용자들의 마지막 로그인 기록을 확인한다.\n","\nlastlog -t 3\n"],
+            ["\n시스템이 재부팅한 기록만을 확인한다.\n","\nlast reboot\n"],
+            ["\nihduser가 로그인한 기록만을 확인한다.\n","\nlast ihduser\n"],
+            ["\nkaituser가 로그인에 실패한 기록만을 확인한다.\n","\nlastb kaiuser"],
+            ["시스템 보안 강화를 위해 커널 매개변수를 제어하는 과정이다.\nping 명령어에 응답하지 않도록 커널 매개 변수를 변경한다.\n","\nsysctl -w net.ipv4.icmp_echo_ignore_all=1\n"],
+            ["\n시스템 보안 강화를 위해 커널 매개변수를 제어하는 과정이다.\n재부팅 시에도 작업 내용이 저장되게 하려고 어떤 설정 파일을 변경해야 하는지 절대 경로를 쓰시오\n","\n/etc/sysctl.conf"],
+            ["원격지인 192.168.12.22의 /home 디렉터리를 로컬시스템의 /backup 디렉터리 아래에 백업한다. root 권한으로 접속하여 허가권, 타임스탬프 등은 그대로 유지한다. 아울러 작업 진행 사항을 표시하며 전송시에 압축을 사용한다.\n","rsync -avz root@192.168.12.22:/home /backup"],
+            ["webmaster 계정으로 들어오는 메일은 고객지원센터 소속 계정인 ihduser와 kaituser와 kaituser에게 전달되도록 설정한다. admin계정으로 들어오는 메일은 /etc/mail_admin 파일에 지정된 사용자들에게 전달되도록 설정한다.\nvi ()\n()\n()\n() <- 설정한 내용을 적용하는 명령어\n","\nvi /etc/aliases\nwebmaster: ihduser, kaituser\nadmin::include:/etc/mail_admin\nnewaliases 또는 sendmail -bi"],
+            ["아파치 설정 과정이다. 아래는?\n웹 문서가 위치하는 디렉터리의 경로는 /usr/local/apache/html로 변경한다.\n일반 사용자의 웹 디렉터리를 www으로 지정한다.\n웹 디렉터리 접근 시에 인식되는 인텍스 파일의 순서를 index.htm, index.html, index.php\n웹 서버의 기본 포트 번호를 8080으로 지정한다.\n도메인명을 www.ihd.or.kr으로 지정하고 포트 번호는 8080을 사용한다.\n","\n아파치 설정 과정이다. 아래는?\n웹 문서가 위치하는 디렉터리의 경로는 /usr/local/apache/html로 변경한다.\nDocumentRoot \"/usr/local/apache/html\"\n일반 사용자의 웹 디렉터리를 www으로 지정한다.\nUserDir www\n웹 디렉터리 접근 시에 인식되는 인텍스 파일의 순서를 index.htm, index.html, index.php\nDirectoryIndex index.htm, index.html, index.php\n웹 서버의 기본 포트 번호를 8080으로 지정한다.\nListen 8080\n도메인명을 www.ihd.or.kr으로 지정하고 포트 번호는 8080을 사용한다.\nServerName www.ihd.or.kr:8080"],
+            ["삼바서버 설정과정이다.\n윈도우에서 접근할 때의 보이는 폴더 이름은 www으로 설정한다. 간단한 설명은 'Web Directory', 공유 디렉터리 경로는 /usr/local/apache/htdcos로 설정, 접근 가능한 사용자는 ihduser 및 kaituser만 가능하고 두 사용자 모두 파일 생성 및 삭제 권한을 부여한다.\nvi ()\n()\n()\n()\n()\n()\n","\nvi /etc/samba/smb.conf\n[www]\ncomment = Web Directory\npath = /usr/local/apached/htdcos\nvalid users = ihduser, kaituser\nwritable = yes"],
+            ["DNS 서버에 질의 가능한 호스트는 192.168.5.0 네트워크 대역에 속한 호스트와 IP 주소가 192.168.12.22인 호스트만 가능하도록 설정한다.\n","\nallow-query {192.168.5.0/24; 192.168.12.22;};\n"],
+["\n도메인에 대한 질의를 168.126.63.1서버로 전달하고, 해당 서버가 그에 대한 응답이 없을 경우 그 질의에 대한 응답을 하지 않도록 설정한다.\n","\nforward only; ( 그렇다면 응답을 할 때는 어떤 항목 값으로 설정해줘야 할까?\nforwarders {168.126.63.1;};"],
+
 
 
 
