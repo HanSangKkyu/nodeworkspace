@@ -617,7 +617,7 @@
             ["시스템에 기본적으로 설치된 cat 명령어의 패키지 프로그램명을 찾아서 해당 패키지가 설치한 파일 목록을 확인하는 과정이다. \ncat 명령어의 절대 경로 정보를 출력한다.\ncat 명령어를 설치한 패키지명을 찾는다.\ncat 명령어를 설치한 패키지의 크기, 사이즈, 요약, 설명 등의 기본정보를 출력한다.\ncat 명령어가 포함된 패키지가 설치한 파일 목록을 확인한다.\n","\n시스템에 기본적으로 설치된 cat 명령어의 패키지 프로그램명을 찾아서 해당 패키지가 설치한 파일 목록을 확인하는 과정이다. \ncat 명령어의 절대 경로 정보를 출력한다.\nwhich cat\ncat 명령어를 설치한 패키지명을 찾는다.\nrpm -qf /bin/cat (/bin/cat은 which cat의 결과)\ncat 명령어를 설치한 패키지의 크기, 사이즈, 요약, 설명 등의 기본정보를 출력한다.\nrpm -qi coreutils (coreutils는 rpm -qf /bin/cat의 결과)\ncat 명령어가 포함된 패키지가 설치한 파일 목록을 확인한다.\nrpm -ql coreutils (coreutils는 rpm -qf /bin/cat의 결과)"],
             ["커널 모듈 간의 의존성 정보를 확인한다.\n","\ncat lib/modules/{version}/modules.dep\n"],
             ["\n모듈 간의 의존성 변경으로 인해 파일 정보가 갱신 되어 관련 명령어를 실행한다. \n","\ndepmod (modules.dep, map 파일을 만드는 명령어"],
-            ["프린터 관련 명령어를 사용해서 /etc/passwd의 내용을 2장 출력하려고 한다. 두가지 말해봐라\n","\nlpr -"],
+            ["프린터 관련 명령어를 사용해서 /etc/passwd의 내용을 2장 출력하려고 한다. 두가지 말해봐라\n","\nlpr -# 2\nlp -n 2"],
             ["시스템 로그 관련 설정을 하는 과정이다.\n관련 파일명을 절대 경로로 기재한다.\n","\nvi etc/rsyslog.conf\n"],
             ["\n시스템 로그 관련 설정을 하는 과정이다.\nssh와 같은 인증을 필요로 하는 프로그램 유형이 발생한 메시지는 /var/log/sshlog에 기록하고 info 수준이의 로그는 제외한다.\n","\nauthpriv.*;authpriv.!=info /var/log/sshlog\n"],
             ["\n시스템 로그 관련 설정을 하는 과정이다.\n모든 facility가 발생하는 crit 수준의 메시지만 /vat/log/critical 파일에 기록한다.\n","\n*.=crit /var/log/critical"],
