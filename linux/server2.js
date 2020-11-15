@@ -18,6 +18,6 @@ app.get('/', function(req, res) {
 	res.render('index.html'); // html 파일을 클라이언트에게 랜더링해준다.
 });
 
-var server = app.listen(8888, function(){ // express 로 서버 열기
+var server = app.listen(8881, function(){ // express 로 서버 열기
 	console.log('['+new Date().toString().substring(4, 24) + '] '+"server startup!");
 });
