@@ -604,7 +604,7 @@
             ["\n삼바 서버 설정에서 공유 그룹명은 IHD로 지정한다.\n","\nworkgroup = IHD\n"],
             ["\n삼바 서버 설정에서 서버에 대한 설명은 IHD server로 지정한다.\n","\nserver string = IHD server\n"],
             ["\n삼바 서버 설정에서 접근할 수 있는 호스트는 192.168.5.0 네트워크에 대역에 속한 모든 호스트들과 로컬시스템으로 제한한다.\n","\nhosts allow = 192.168.5. 127."],
-            ["linux.com 도메인의 webmaster 계정은 ihduser에게 전달되도록 설정하고, windows.com 도메인의 webmaster 계정은 kaituser에게 전달되도록 설정한다.\n","\nvi etc/etc/mail/vitrusertable\nwebmaster@linux.com ihduser\nwebmaster@windows.com kaituser\n"],
+            ["linux.com 도메인의 webmaster 계정은 ihduser에게 전달되도록 설정하고, windows.com 도메인의 webmaster 계정은 kaituser에게 전달되도록 설정한다.\n","\nvi /etc/mail/vitrusertable\nwebmaster@linux.com ihduser\nwebmaster@windows.com kaituser\n"],
             ["\n하나의 메일 서버에 여러 도메인을 사용하는 환경에서 동일한 메일 계정을 요구받아 관련 설정하는 과정에서\n수정된 내용을 반영하는 makemap 명령어를 기술한다.\n","\nmakemap hash /etc/mail/virtusertable < /etc/mail/virtusertable"],
             ["TCP Wrapper를 이용해 외부의 호스트들의 접근을 제어하는 과정이다.\n특정 호스트들에 대한 허가 관련 설정을 위해 관련 파일을 편집기로 작업한다.\n","\nvi /etc/hosts.allow\n"],
             ["\nTCP Wrapper를 이용해 외부의 호스트들의 접근을 제어하는 과정이다.\n모든 서비스에 대해 로컬호스트와 ihd.or.kr 도메인을 사용하는 호스트들은 모두 허가한다.\n","\nALL: localhost, .ihd.or.kr\n"],
