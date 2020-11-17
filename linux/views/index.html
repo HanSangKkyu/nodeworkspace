@@ -483,7 +483,6 @@
         ]        
 
         var silgi0 = [
-            ["ihduser 사용자의 정보를 확인한다","\npasswd -S"],
             ["\nihduser 사용자를 일시적으로 잠금한다","\npasswd -l"],
             ["\nihduser 사용자를 잠금을 해제한다","\npasswd -u"],
             ["\n사용자를 다음 로그인시 비밀번호를 반드시 바꾸게 한다.","\npasswd -e"],
@@ -583,7 +582,6 @@
             ["묶여진 파일의 압축을 해제하는데, 파일 목록 등과 같은 진행 과정은 화면에 표시하지 않는다.\n","\ntar -Jxf project.tar.xz\n"],
             ["\nsum.c를 컴파일 하여 sum.o라는 목적 파일을 생성한다.\n","\ngcc -c sum.c\n"],
             ["\nsum.o 및 add.o와 같이 2개의 목적 파일을 이용해서 calc라는 실행 명령을 생성한다.\n","\ngcc -o calc sum.o add.o"],
-            ["사용 가능한 모듈 목록 정보를 출력한다.\n","\nmodprobe -l \n"],
             ["\nip6table_filter 모듈을 제거하면서 관련 모듈도 같이 제거한다.\n","\nmodprobe -r ip6table_filter\n"],
             ["\n3c59x.ko 모듈 관련 정보를 출력한다.\n","\nmodinfo 3c59x.ko"],
             ["최근에 재부팅한 정보 2개만 출력한다.\n","\nlast -2 reboot \n"],
@@ -598,7 +596,6 @@
             ["\nNIS 서버의 사용자 관련 정보를 출력한다.\n","\nypcat passwd.byname\n"],
             ["\nNIS 서버에 등록된 lin 사용자의 패스워드를 변경한다.\n","\nyppasswd lin"],
             ["NFS 서버에서 외부에 공유된 내용을 세부적인 설정 정보를 포함해서 자세히 출력한다.\n","\nexportfs -v\n"],
-            ["\nNFS 클라이언트에서 NFS 서버인 192.168.12.22의 공유된 정보를 확인한다.\n","\nshowmount -e 192.168.12.22\n"],
             ["\nRPC 관련 정보를 확인한다.\n","\nrpcinfo\n"],
             ["\nNFS 서버 또는 NFS 클라이언트에서 NFS 관련 상태 정보를 출력한다.\n","\nnfsstat"],
             ["삼바 서버 설정에서 윈도우 운영체제에서 이름으로 접근할 때의 명칭은 ihd_com으로 지정한다.\n","\nnetbios name = ihd_com\n"],
@@ -686,15 +683,18 @@
             ["아피치 설정에서 접근을 통제할 디렉터리는 /www/ihd/admin이다.\n192.168.22.0 대역의 주소를 갖는 클아이언트 접속만 허용한다.\nvi ()\n<Directory ()>\n() Deny, Allow\n() from ()\nAllow from ()\n<Directory />\n","\nvi /etc/httpd/conf/httpd.conf\n<Directory \"/www/ihd/admin\">\nOrder Deny, Allow\nDeny from All\nAllow from 192.168.22.0/255.255.255.0\n<Directory />"],
             ["NFS 서버 설정 과정이다.\n공유 디렉터리명 : /nfs_share\n공유 접근 및 사용 권한 : root 사용자권한 읽기 쓰기 가능\n공유 접근 클라이언트 : 192.168.5.0 네트워크 주소를 갖는 클라이언트\nvi (?)\n/nfs_share (?)(rw, (?))\n","\nvi /etc/exports\n/nfs_share 192.168.5.0/24(rw, no_root_squash)"],
             ["ihd.or.kr으로 들어오는 모든 메일을 ihdadmin으로 전달한다.\nvi ()\n() ()\n","\nvi /etc/mail/virtuusertable\n@ihd.or.kr ihdadmin"],
-            ["squid 프로시 서버의 접근 제한 설정하는 과정이다.\n10.20.17.0 네트워크 대역에 속한 호스트만 허가하고, 해당 네트워크 대역에 속하지 않는 모든 호스트의 사용을 거부한다.\n() kait src ()\nhttp_access () ()\nhttp_access () ()\n","\nacl kait src 10.20.17.0/24\nhttp_access deny all\nhttp_access allow kait\n"],
             ["DHCP 클라이언트에게 할당되는 IP 주소는 192.168.100.101~192.168.100.199이다.\n","range 192.168.100.101 192.168.100.199;\n"],
             ["DHCP 클라이언트에게 할당되는 도메인 네임 서버는 ns.linuxmaster.org이다.\n","option domain-name-servers ns.linuxmaster.org;"],
-            ["telnet 서버의 설정의 일부이다.\n조건에 맞게 만들어 봐라\nvim ()\nservice telnet\n{\ndisable=no\nflags=REUSE\nsocket_type=stream\n()=no\n()=5\n()=08:00-20:00\n()=7\n()=10.20.16.0/24\nlog_type=()\n}\n다중 스레드로 동작하여 새로운 서비스 요청을 받아들일 수 있다.\n서버의 우선순위를 5로 지정한다.\n텔넷 서버의 접속은 오전 8시부터 오후 8시까지만 가능하게 설정한다.\n동일한 IP 주소에서의 접속은 7개로 제한한다.\nIP 주소가 10.20.16.0./24 인 네트워크 대역을 사용하는 호스트는 접속을 거부한다.\n로그는 /var/log/telnetd.log 파일에 별도로 저장한다.\n","\nvim /etc/xinetd.d/telnet\nservice telnet\n{\ndisable=no\nflags=REUSE\nsocket_type=stream\nwait=no\nnice=5\naccess_times=08:00-20:00\nper_source=7\nno_access=10.20.16.0/24\nlog_type=FILE /var/log/telnetd.log\n}"],
-
+            
         ]
 
         var silgi1 = [
-
+            ["\nNFS 클라이언트에서 NFS 서버인 192.168.12.22의 공유된 정보를 확인한다.\n","\nshowmount -e 192.168.12.22\n"],
+            ["squid 프로시 서버의 접근 제한 설정하는 과정이다.\n10.20.17.0 네트워크 대역에 속한 호스트만 허가하고, 해당 네트워크 대역에 속하지 않는 모든 호스트의 사용을 거부한다.\n() kait src ()\nhttp_access () ()\nhttp_access () ()\n","\nacl kait src 10.20.17.0/24\nhttp_access deny all\nhttp_access allow kait\n"],
+            ["telnet 서버의 설정의 일부이다.\n조건에 맞게 만들어 봐라\nvim ()\nservice telnet\n{\ndisable=no\nflags=REUSE\nsocket_type=stream\n()=no\n()=5\n()=08:00-20:00\n()=7\n()=10.20.16.0/24\nlog_type=()\n}\n다중 스레드로 동작하여 새로운 서비스 요청을 받아들일 수 있다.\n서버의 우선순위를 5로 지정한다.\n텔넷 서버의 접속은 오전 8시부터 오후 8시까지만 가능하게 설정한다.\n동일한 IP 주소에서의 접속은 7개로 제한한다.\nIP 주소가 10.20.16.0./24 인 네트워크 대역을 사용하는 호스트는 접속을 거부한다.\n로그는 /var/log/telnetd.log 파일에 별도로 저장한다.\n","\nvim /etc/xinetd.d/telnet\nservice telnet\n{\ndisable=no\nflags=REUSE\nsocket_type=stream\nwait=no\nnice=5\naccess_times=08:00-20:00\nper_source=7\nno_access=10.20.16.0/24\nlog_type=FILE /var/log/telnetd.log\n}"],
+            ["ihduser 사용자의 정보를 확인한다","\npasswd -S"],
+            ["사용 가능한 모듈 목록 정보를 출력한다.\n","\nmodprobe -l \n"],
+            
         ]
 
         var data = [];
