@@ -17,6 +17,7 @@
         <label><input type="checkbox" onclick="onClickeddata2()">data2</label> 
         <label><input type="checkbox" onclick="onClickeddata3()">data3</label> 
         <label><input type="checkbox" onclick="onClickedsilgi1()">silgi1</label> 
+        <label><input type="checkbox" onclick="onClickedsilgi2()">silgi2</label> 
     </div>
     <div id="screen" style="display: flex; height:50%; justify-content: center; align-items: center; padding: 20;">
         <div id="text" style=""></div>
@@ -656,12 +657,10 @@
         var silgi1 = [
             ["\nNFS 클라이언트에서 NFS 서버인 192.168.12.22의 공유된 정보를 확인한다.\n","\nshowmount -e 192.168.12.22\n"],
             ["squid 프로시 서버의 접근 제한 설정하는 과정이다.\n10.20.17.0 네트워크 대역에 속한 호스트만 허가하고, 해당 네트워크 대역에 속하지 않는 모든 호스트의 사용을 거부한다.\n() kait src ()\nhttp_access () ()\nhttp_access () ()\n","\nacl kait src 10.20.17.0/24\nhttp_access deny all\nhttp_access allow kait\n"],
-            ["telnet 서버의 설정의 일부이다.\n조건에 맞게 만들어 봐라\nvim ()\nservice telnet\n{\ndisable=no\nflags=REUSE\nsocket_type=stream\n()=no\n()=5\n()=08:00-20:00\n()=7\n()=10.20.16.0/24\nlog_type=()\n}\n다중 스레드로 동작하여 새로운 서비스 요청을 받아들일 수 있다.\n서버의 우선순위를 5로 지정한다.\n텔넷 서버의 접속은 오전 8시부터 오후 8시까지만 가능하게 설정한다.\n동일한 IP 주소에서의 접속은 7개로 제한한다.\nIP 주소가 10.20.16.0./24 인 네트워크 대역을 사용하는 호스트는 접속을 거부한다.\n로그는 /var/log/telnetd.log 파일에 별도로 저장한다.\n","\nvim /etc/xinetd.d/telnet\nservice telnet\n{\ndisable=no\nflags=REUSE\nsocket_type=stream\nwait=no\nnice=5\naccess_times=08:00-20:00\nper_source=7\nno_access=10.20.16.0/24\nlog_type=FILE /var/log/telnetd.log\n}"],
             ["ihduser 사용자의 정보를 확인한다","\npasswd -S"],
             ["사용 가능한 모듈 목록 정보를 출력한다.\n","\nmodprobe -l \n"],
             ["\n리눅스 시스템에 백업한 정보가 담겨있는 usb메모리를 장착하여 인식 여부 및 장치 파일명을 확인하는 과정이다.\n명령어를 이용해서 관련 정보를 확인힌다.\n","\nfdisk -l\n"],
             ["ihduser 사용자가 실행한 프로세스의 PID 값을 출력한다.\n","pgrep -u ihduser\n"],
-            ["\nNIS 서버의 사용자 관련 정보를 출력한다.\n","\nypcat passwd.byname\n"],
             ["DNS 서버의 zone 파일을 설정한는과정이다.\nihd.or.kr 도메인으로 메일을 받을 수 있도록 설정\n@ IN SOA ~\n IN NS ~\n IN A ~\n","IN MX 10 ihd.or.kr\n"],
             ["NFS 서버에서 외부에 공유된 내용을 세부적인 설정 정보를 포함해서 자세히 출력한다.\n","\nexportfs -v\n"],
             ["\n방화벽 규칙을 확인하고 저장 및 관리하는 과정이다.\n현재 설정되어 있는 iptables의 규칙을 전부 제거한다.\n","\niptables -F 또는 --flush\n"],
@@ -683,8 +682,6 @@
             ["\n사용자의 디스크 쿼터를 설정하는 과정이다.\nkaituser 사용자에 대한 쿼터를 설정한다.\n","\nedquota kaituser"],
             ["203.247.12.22의 80번 포트로 들어오는 패킷을 192.168.5.13의 80번 포트로 연결한다.\n","iptables -t nat -A prerouting -p tcp -d 203.247.12.22 --dport 80 -j DNAT --to 192.168.5.13:80\n"],
             ["\n시스템 로그 관련 설정을 하는 과정이다.\nssh와 같은 인증을 필요로 하는 프로그램 유형이 발생한 메시지는 /var/log/sshlog에 기록하고 info 수준이의 로그는 제외한다.\n","\nauthpriv.*;authpriv.!=info /var/log/sshlog\n"],
-            ["첫 번째 이더넷카드(eth0)를 통해 외부로 나가는 패킷에 203.247.5.13번 IP 주소를 부여한다.\n","iptables -t nat -A postrouting -o eth0 --to 203.247.5.13 -j SNAT\n"],
-            ["\nsum.o 및 add.o와 같이 2개의 목적 파일을 이용해서 calc라는 실행 명령을 생성한다.\n","\ngcc -o calc sum.o add.o"],
             ["grep을 이용해서 ihduser가 로그인한 로그를 확인하려고 한다. 명령어는?\n","\ngrep ihduser /var/log/secure\n"],
             ["\nNIS 서버의 맵 파일을 출력한다.\n","\nypwhich -m\n"],
             ["\nssh-keygen으로 생성되는 파일의 경로는? 사용자가 ihduser고 사용자 홈디렉터리는 /home이다\n","\n/home/ihduser/.ssh/id_rsa\n/home/ihduser/.ssh/id_rsa.pub"],
@@ -692,9 +689,17 @@
             ["\n메일 서버를 설정하는 과정에서 \n발신도메인을 무조건 ihd.or.kr로 설정하는 명령어\n","\nvi etc/mail/sendmail.cf\nDjihd.or.kr\n"],
             ["\nkaituser에 적용된 디스크 쿼터 정보를 확인한다.\n","\nquota kaituser"],
             ["\npostfix가 참고하는 동적 라이브러리 정보를 확인하는 명령을 기재한다.\n","\nldd /usr/sbin/postfix(which postfix로 얻어낸다)\n"],
-            ["로그인 해서 사용중인 bash의 NI 및 PRI 값을 확인하는 명령어는?\n","\nps -l 또는 top\n"],
             ["IP주소가 192.168.12.22에 대한 질의시 도메인을 알려주는 리버스 존 파일 설정을 한다. 리버스 존 파일명은 ihd.rev로 지정한다.\nzone ( ) IN {\n type ( );\n ( );\n}\n","\n\"12.168.192.in-addr.arpa\" 또는 \"22.12.168.192.in-addr.arpa\"\nmaster\nfile \"ihd.rev\" 또는 \"/var/named/ihd.rev\"\n"],
             
+        ]
+
+        var silgi2 = [
+            ["\nNIS 서버의 사용자 관련 정보를 출력한다.\n","\nypcat passwd.byname\n"],
+            ["로그인 해서 사용중인 bash의 NI 및 PRI 값을 확인하는 명령어는?\n","\nps -l 또는 top\n"],
+            ["첫 번째 이더넷카드(eth0)를 통해 외부로 나가는 패킷에 203.247.5.13번 IP 주소를 부여한다.\n","iptables -t nat -A postrouting -o eth0 --to 203.247.5.13 -j SNAT\n"],
+            ["\nsum.o 및 add.o와 같이 2개의 목적 파일을 이용해서 calc라는 실행 명령을 생성한다.\n","\ngcc -o calc sum.o add.o"],
+            ["telnet 서버의 설정의 일부이다.\n조건에 맞게 만들어 봐라\nvim ()\nservice telnet\n{\ndisable=no\nflags=REUSE\nsocket_type=stream\n()=no\n()=5\n()=08:00-20:00\n()=7\n()=10.20.16.0/24\nlog_type=()\n}\n다중 스레드로 동작하여 새로운 서비스 요청을 받아들일 수 있다.\n서버의 우선순위를 5로 지정한다.\n텔넷 서버의 접속은 오전 8시부터 오후 8시까지만 가능하게 설정한다.\n동일한 IP 주소에서의 접속은 7개로 제한한다.\nIP 주소가 10.20.16.0./24 인 네트워크 대역을 사용하는 호스트는 접속을 거부한다.\n로그는 /var/log/telnetd.log 파일에 별도로 저장한다.\n","\nvim /etc/xinetd.d/telnet\nservice telnet\n{\ndisable=no\nflags=REUSE\nsocket_type=stream\nwait=no\nnice=5\naccess_times=08:00-20:00\nper_source=7\nno_access=10.20.16.0/24\nlog_type=FILE /var/log/telnetd.log\n}"],
+        
         ]
 
         var data = [];
@@ -797,7 +802,12 @@
             console.log(data)
             index = -1;
         }
-        
+
+        function onClickedsilgi2(){
+            data = shuffle(silgi2);
+            console.log(data)
+            index = -1;
+        }
         // function copy(_text) {
         //     var obj = document.getElementById("text2");
         //     obj.select(); //인풋 컨트롤의 내용 전체 선택
